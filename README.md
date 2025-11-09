@@ -1,101 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Isjianne Dumlao - Age Checker</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1e1e1e;
-      color: #ffffff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      padding: 20px;
-    }
+# Isjianne Dumlao - Age Checker
 
-    .container {
-      max-width: 500px;
-      text-align: center;
-      background-color: #2c2c2c;
-      padding: 30px;
-      border-radius: 10px;
-    }
+A simple JavaScript program that tells you how your favorite artist's age compares to Google.
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
+---
 
-    p {
-      margin-bottom: 20px;
-      font-size: 1rem;
-      color: #cccccc;
-    }
+## How It Works
 
-    input[type="number"] {
-      padding: 10px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 15px;
-      width: 80%;
-    }
+1. Enter the **age** of your favorite artist in the input field.
+2. Click **Check Age**.
+3. See the message telling you whether they are younger, as old, or older than Google (25 years).
 
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      border-radius: 5px;
-      border: none;
-      background-color: #4a90e2;
-      color: #ffffff;
-      cursor: pointer;
-    }
+---
 
-    button:hover {
-      background-color: #357ab8;
-    }
+## JavaScript Code
 
-    .result {
-      margin-top: 20px;
-      font-size: 1.1rem;
-      background-color: #3a3a3a;
-      padding: 15px;
-      border-radius: 5px;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Isjianne Dumlao - Age Checker</h1>
-    <p>Enter the age of your favorite artist:</p>
-    <input type="number" id="ageInput" placeholder="Enter age...">
-    <br>
-    <button onclick="checkAge()">Check Age</button>
-    <div class="result" id="result"></div>
-  </div>
+```javascript
+// Get references to input and result elements
+const ageInput = document.getElementById('ageInput'); // Grabs the input box
+const result = document.getElementById('result');    // Grabs the div where the result will show
 
-  <script>
-    const ageInput = document.getElementById('ageInput');
-    const result = document.getElementById('result');
+// Function to check the age
+function checkAge() {
+  const age = parseInt(ageInput.value); // Converts the input value to a number
 
-    function checkAge() {
-      const age = parseInt(ageInput.value);
+  // Check if input is valid
+  if (!age) {
+    result.textContent = "Please enter a valid age!"; // Shows error message
+    return;
+  }
 
-      if (!age) {
-        result.textContent = "Please enter a valid age!";
-        return;
-      }
-
-      if (age < 25) {
-        result.textContent = `They are ${age}, and they're younger than Google.`;
-      } else if (age === 25) {
-        result.textContent = `They are ${age}, and they're as old as Google.`;
-      } else {
-        result.textContent = `They are ${age}, and they're older than Google.`;
-      }
-    }
-  </script>
-</body>
-</html>
+  // Conditional statements to compare age
+  if (age < 25) {
+    result.textContent = `They are ${age}, and they're younger than Google.`; // Age less than 25
+  } else if (age === 25) {
+    result.textContent = `They are ${age}, and they're as old as Google.`; // Age equals 25
+  } else {
+    result.textContent = `They are ${age}, and they're older than Google.`; // Age greater than 25
+  }
+}
