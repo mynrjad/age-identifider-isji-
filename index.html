@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Isjianne Dumlao</title>
+
+  <style>
+    body {
+      font-family: "Inter", sans-serif;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #181818;
+      padding: 40px;
+      width: 380px;
+      border-radius: 16px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+      text-align: center;
+      transform: translateY(20px);
+      opacity: 0;
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 12px;
+      width: 85%;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      margin-bottom: 15px;
+      transition: border 0.3s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border: 1px solid #4da3ff;
+    }
+
+    button {
+      padding: 12px 25px;
+      border: none;
+      background: #4da3ff;
+      color: #fff;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background 0.3s ease, transform 0.15s ease;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #1b7cff;
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: 600;
+      opacity: 0;
+      animation: fadeIn 0.4s ease forwards;
+      min-height: 25px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h2>Artist Age Checker</h2>
+
+    <input id="artistAge" type="number" placeholder="Enter artist's age" />
+
+    <button onclick="checkAge()">Check</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function checkAge() {
+      const age = Number(document.getElementById("artistAge").value);
+      const googleAge = 25;
+      let message = "";
+
+      if (!age && age !== 0) {
+        message = "Please enter a valid age.";
+      } else if (age < googleAge) {
+        message = `They are ${age}, and they're younger than Google.`;
+      } else if (age === googleAge) {
+        message = `They are ${age}, and they're as old as Google.`;
+      } else {
+        message = `They are ${age}, and they're older than Google.`;
+      }
+
+      const result = document.getElementById("result");
+      result.textContent = message;
+
+      // Restart fade animation
+      result.style.opacity = "0";
+      setTimeout(() => {
+        result.style.opacity = "1";
+      }, 10);
+    }
+  </script>
+</body>
+</html>
