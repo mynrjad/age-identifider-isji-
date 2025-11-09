@@ -1,98 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Isjianne Dumlao</title>
-
+  <meta charset="UTF-8">
+  <title>Isjianne Dumlao - Age Checker</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #0d0d0d;
-      color: #f0f0f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1e1e1e;
+      color: #ffffff;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      margin: 0;
+      padding: 20px;
     }
 
     .container {
-      background: #181818;
-      padding: 30px;
-      width: 350px;
-      border-radius: 12px;
+      max-width: 500px;
       text-align: center;
-      animation: fadeIn 0.5s ease forwards;
-      opacity: 0;
+      background-color: #2c2c2c;
+      padding: 30px;
+      border-radius: 10px;
     }
 
-    input {
-      width: 80%;
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin-bottom: 20px;
+      font-size: 1rem;
+      color: #cccccc;
+    }
+
+    input[type="number"] {
       padding: 10px;
-      border-radius: 8px;
-      border: 1px solid #333;
-      background: #111;
-      color: white;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
       margin-bottom: 15px;
+      width: 80%;
     }
 
     button {
       padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
       border: none;
-      background: #4da3ff;
-      color: white;
-      border-radius: 8px;
+      background-color: #4a90e2;
+      color: #ffffff;
       cursor: pointer;
     }
 
-    #result {
-      margin-top: 15px;
-      font-size: 16px;
-      opacity: 0;
-      animation: fadeIn 0.5s ease forwards;
-      min-height: 20px;
+    button:hover {
+      background-color: #357ab8;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .result {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      background-color: #3a3a3a;
+      padding: 15px;
+      border-radius: 5px;
     }
   </style>
 </head>
-
 <body>
   <div class="container">
-    <h2>Artist Age Checker</h2>
-
-    <input id="artistAge" type="number" placeholder="Enter age" />
-    <button onclick="checkAge()">Check</button>
-
-    <div id="result"></div>
+    <h1>Isjianne Dumlao - Age Checker</h1>
+    <p>Enter the age of your favorite artist:</p>
+    <input type="number" id="ageInput" placeholder="Enter age...">
+    <br>
+    <button onclick="checkAge()">Check Age</button>
+    <div class="result" id="result"></div>
   </div>
 
   <script>
-    function checkAge() {
-      const age = Number(document.getElementById("artistAge").value);
-      const googleAge = 25;
-      let message = "";
+    const ageInput = document.getElementById('ageInput');
+    const result = document.getElementById('result');
 
-      if (!age && age !== 0) {
-        message = "Please enter a valid age.";
-      } else if (age < googleAge) {
-        message = `They are ${age}, and they're younger than Google.`;
-      } else if (age === googleAge) {
-        message = `They are ${age}, and they're as old as Google.`;
-      } else {
-        message = `They are ${age}, and they're older than Google.`;
+    function checkAge() {
+      const age = parseInt(ageInput.value);
+
+      if (!age) {
+        result.textContent = "Please enter a valid age!";
+        return;
       }
 
-      const result = document.getElementById("result");
-      result.textContent = message;
-
-      result.style.opacity = "0";
-      setTimeout(() => {
-        result.style.opacity = "1";
-      }, 10);
+      if (age < 25) {
+        result.textContent = `They are ${age}, and they're younger than Google.`;
+      } else if (age === 25) {
+        result.textContent = `They are ${age}, and they're as old as Google.`;
+      } else {
+        result.textContent = `They are ${age}, and they're older than Google.`;
+      }
     }
   </script>
 </body>
